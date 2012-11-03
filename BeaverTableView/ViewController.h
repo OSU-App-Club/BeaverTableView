@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "OSUTableView.h"
 @interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 //View
-@property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) IBOutlet OSUTableView *tableView;
 //Model
 @property (nonatomic, strong) NSMutableArray *tableInformation;
 

@@ -12,7 +12,7 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Odd-od-jgU">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Odd-od-jgU" customClass="OSUTableView">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="rightDetailCell" textLabel="Cxz-6Z-c8R" detailTextLabel="Q8e-Pg-RN9" style="IBUITableViewCellStyleValue1" id="Vwe-v0-9wb">
@@ -38,8 +38,8 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="2" id="hBw-Cy-YI6"/>
-                                    <outlet property="delegate" destination="2" id="Co5-Pl-Pda"/>
+                                    <outlet property="osuDataSource" destination="2" id="1i9-ji-mRd"/>
+                                    <outlet property="osuDelegate" destination="2" id="zjC-MP-hU6"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -57,16 +57,24 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="31" y="53"/>
         </scene>
     </scenes>
     <classes>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
         </class>
+        <class className="OSUTableView" superclassName="UITableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/OSUTableView.h"/>
+            <relationships>
+                <relationship kind="outlet" name="osuDataSource"/>
+                <relationship kind="outlet" name="osuDelegate"/>
+            </relationships>
+        </class>
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="tableView" candidateClass="OSUTableView"/>
             </relationships>
         </class>
     </classes>

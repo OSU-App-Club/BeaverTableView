@@ -18,6 +18,7 @@
 		83D8C194164498AF00DDEC9F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83D8C193164498AF00DDEC9F /* Default-568h@2x.png */; };
 		83D8C197164498AF00DDEC9F /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83D8C195164498AF00DDEC9F /* MainStoryboard.storyboard */; };
 		83D8C19A164498AF00DDEC9F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D8C199164498AF00DDEC9F /* ViewController.m */; };
+		83D8C1AB1644D4DB00DDEC9F /* OSUTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D8C1AA1644D4DB00DDEC9F /* OSUTableView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,8 @@
 		83D8C196164498AF00DDEC9F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		83D8C198164498AF00DDEC9F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		83D8C199164498AF00DDEC9F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		83D8C1A91644D4DB00DDEC9F /* OSUTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSUTableView.h; sourceTree = "<group>"; };
+		83D8C1AA1644D4DB00DDEC9F /* OSUTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSUTableView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +91,8 @@
 				83D8C195164498AF00DDEC9F /* MainStoryboard.storyboard */,
 				83D8C198164498AF00DDEC9F /* ViewController.h */,
 				83D8C199164498AF00DDEC9F /* ViewController.m */,
+				83D8C1A91644D4DB00DDEC9F /* OSUTableView.h */,
+				83D8C1AA1644D4DB00DDEC9F /* OSUTableView.m */,
 				83D8C184164498AF00DDEC9F /* Supporting Files */,
 			);
 			path = BeaverTableView;
@@ -176,6 +181,7 @@
 				83D8C18A164498AF00DDEC9F /* main.m in Sources */,
 				83D8C18E164498AF00DDEC9F /* AppDelegate.m in Sources */,
 				83D8C19A164498AF00DDEC9F /* ViewController.m in Sources */,
+				83D8C1AB1644D4DB00DDEC9F /* OSUTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +298,7 @@
 				83D8C19F164498AF00DDEC9F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
