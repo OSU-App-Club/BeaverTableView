@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "OSUTableView.h"
+#import "OSUTableView.h" //Notice we had to import this file
 @interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 //View

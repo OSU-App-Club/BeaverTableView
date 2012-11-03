@@ -7,12 +7,13 @@
 //
 
 #import "OSUTableView.h"
-#define PULL_HEIGHT 60
-@interface OSUTableView()
+#define PULL_HEIGHT self.rowHeight //This way the pull height can be changed as you change your row height
 
+//This is a private interface
+@interface OSUTableView()
+//Properties that are contained in here can only be used within this file
 @property (nonatomic, strong) NSIndexPath *indexOfAddedCell;
 @property CGFloat addedRowHeight;
-
 @end
 
 @implementation OSUTableView

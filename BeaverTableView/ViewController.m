@@ -14,7 +14,6 @@
 
 @property (nonatomic, strong) NSIndexPath *indexOfAddedCell;
 @property CGFloat addedRowHeight;
-
 @end
 
 @implementation ViewController
@@ -38,7 +37,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-//This is actually 
+//This is actually an OSUTableViewDelegate
 #pragma mark - UITableViewDelegate
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     //Rows get highlighted when selected... deselect after that
@@ -63,9 +62,12 @@
     
     //Example 2
     cell.textLabel.text = [self.tableInformation objectAtIndex:indexPath.row];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"Index: %i",indexPath.row];
+
     
     return cell;
 }
+//We use this method for adding and removing cells from our model based on gestures
 -(void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (editingStyle) {
         case UITableViewCellEditingStyleInsert:
