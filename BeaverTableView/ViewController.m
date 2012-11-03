@@ -8,19 +8,13 @@
 
 #import "ViewController.h"
 
-#define PULL_HEIGHT 60
-
 @interface ViewController ()
 
-@property (nonatomic, strong) NSIndexPath *indexOfAddedCell;
-@property CGFloat addedRowHeight;
 @end
 
 @implementation ViewController
 @synthesize tableView = _tableView;
 @synthesize tableInformation = _tableInformation;
-@synthesize indexOfAddedCell = _indexOfAddedCell;
-@synthesize addedRowHeight = _addedRowHeight;
 
 - (void)viewDidLoad
 {
