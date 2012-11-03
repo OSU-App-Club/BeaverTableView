@@ -1,0 +1,299 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		83D8C17E164498AF00DDEC9F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83D8C17D164498AF00DDEC9F /* UIKit.framework */; };
+		83D8C180164498AF00DDEC9F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83D8C17F164498AF00DDEC9F /* Foundation.framework */; };
+		83D8C182164498AF00DDEC9F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83D8C181164498AF00DDEC9F /* CoreGraphics.framework */; };
+		83D8C188164498AF00DDEC9F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83D8C186164498AF00DDEC9F /* InfoPlist.strings */; };
+		83D8C18A164498AF00DDEC9F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D8C189164498AF00DDEC9F /* main.m */; };
+		83D8C18E164498AF00DDEC9F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D8C18D164498AF00DDEC9F /* AppDelegate.m */; };
+		83D8C190164498AF00DDEC9F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 83D8C18F164498AF00DDEC9F /* Default.png */; };
+		83D8C192164498AF00DDEC9F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83D8C191164498AF00DDEC9F /* Default@2x.png */; };
+		83D8C194164498AF00DDEC9F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83D8C193164498AF00DDEC9F /* Default-568h@2x.png */; };
+		83D8C197164498AF00DDEC9F /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83D8C195164498AF00DDEC9F /* MainStoryboard.storyboard */; };
+		83D8C19A164498AF00DDEC9F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D8C199164498AF00DDEC9F /* ViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		83D8C179164498AE00DDEC9F /* BeaverTableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeaverTableView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		83D8C17D164498AF00DDEC9F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		83D8C17F164498AF00DDEC9F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		83D8C181164498AF00DDEC9F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		83D8C185164498AF00DDEC9F /* BeaverTableView-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BeaverTableView-Info.plist"; sourceTree = "<group>"; };
+		83D8C187164498AF00DDEC9F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		83D8C189164498AF00DDEC9F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		83D8C18B164498AF00DDEC9F /* BeaverTableView-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BeaverTableView-Prefix.pch"; sourceTree = "<group>"; };
+		83D8C18C164498AF00DDEC9F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		83D8C18D164498AF00DDEC9F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		83D8C18F164498AF00DDEC9F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		83D8C191164498AF00DDEC9F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		83D8C193164498AF00DDEC9F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		83D8C196164498AF00DDEC9F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		83D8C198164498AF00DDEC9F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		83D8C199164498AF00DDEC9F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		83D8C176164498AE00DDEC9F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83D8C17E164498AF00DDEC9F /* UIKit.framework in Frameworks */,
+				83D8C180164498AF00DDEC9F /* Foundation.framework in Frameworks */,
+				83D8C182164498AF00DDEC9F /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		83D8C16E164498AE00DDEC9F = {
+			isa = PBXGroup;
+			children = (
+				83D8C183164498AF00DDEC9F /* BeaverTableView */,
+				83D8C17C164498AE00DDEC9F /* Frameworks */,
+				83D8C17A164498AE00DDEC9F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		83D8C17A164498AE00DDEC9F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				83D8C179164498AE00DDEC9F /* BeaverTableView.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		83D8C17C164498AE00DDEC9F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				83D8C17D164498AF00DDEC9F /* UIKit.framework */,
+				83D8C17F164498AF00DDEC9F /* Foundation.framework */,
+				83D8C181164498AF00DDEC9F /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		83D8C183164498AF00DDEC9F /* BeaverTableView */ = {
+			isa = PBXGroup;
+			children = (
+				83D8C18C164498AF00DDEC9F /* AppDelegate.h */,
+				83D8C18D164498AF00DDEC9F /* AppDelegate.m */,
+				83D8C195164498AF00DDEC9F /* MainStoryboard.storyboard */,
+				83D8C198164498AF00DDEC9F /* ViewController.h */,
+				83D8C199164498AF00DDEC9F /* ViewController.m */,
+				83D8C184164498AF00DDEC9F /* Supporting Files */,
+			);
+			path = BeaverTableView;
+			sourceTree = "<group>";
+		};
+		83D8C184164498AF00DDEC9F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				83D8C185164498AF00DDEC9F /* BeaverTableView-Info.plist */,
+				83D8C186164498AF00DDEC9F /* InfoPlist.strings */,
+				83D8C189164498AF00DDEC9F /* main.m */,
+				83D8C18B164498AF00DDEC9F /* BeaverTableView-Prefix.pch */,
+				83D8C18F164498AF00DDEC9F /* Default.png */,
+				83D8C191164498AF00DDEC9F /* Default@2x.png */,
+				83D8C193164498AF00DDEC9F /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		83D8C178164498AE00DDEC9F /* BeaverTableView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 83D8C19D164498AF00DDEC9F /* Build configuration list for PBXNativeTarget "BeaverTableView" */;
+			buildPhases = (
+				83D8C175164498AE00DDEC9F /* Sources */,
+				83D8C176164498AE00DDEC9F /* Frameworks */,
+				83D8C177164498AE00DDEC9F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BeaverTableView;
+			productName = BeaverTableView;
+			productReference = 83D8C179164498AE00DDEC9F /* BeaverTableView.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		83D8C170164498AE00DDEC9F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "OSU iOS App Club";
+			};
+			buildConfigurationList = 83D8C173164498AE00DDEC9F /* Build configuration list for PBXProject "BeaverTableView" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 83D8C16E164498AE00DDEC9F;
+			productRefGroup = 83D8C17A164498AE00DDEC9F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				83D8C178164498AE00DDEC9F /* BeaverTableView */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		83D8C177164498AE00DDEC9F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83D8C188164498AF00DDEC9F /* InfoPlist.strings in Resources */,
+				83D8C190164498AF00DDEC9F /* Default.png in Resources */,
+				83D8C192164498AF00DDEC9F /* Default@2x.png in Resources */,
+				83D8C194164498AF00DDEC9F /* Default-568h@2x.png in Resources */,
+				83D8C197164498AF00DDEC9F /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		83D8C175164498AE00DDEC9F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83D8C18A164498AF00DDEC9F /* main.m in Sources */,
+				83D8C18E164498AF00DDEC9F /* AppDelegate.m in Sources */,
+				83D8C19A164498AF00DDEC9F /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		83D8C186164498AF00DDEC9F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				83D8C187164498AF00DDEC9F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		83D8C195164498AF00DDEC9F /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				83D8C196164498AF00DDEC9F /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		83D8C19B164498AF00DDEC9F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		83D8C19C164498AF00DDEC9F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		83D8C19E164498AF00DDEC9F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BeaverTableView/BeaverTableView-Prefix.pch";
+				INFOPLIST_FILE = "BeaverTableView/BeaverTableView-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		83D8C19F164498AF00DDEC9F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BeaverTableView/BeaverTableView-Prefix.pch";
+				INFOPLIST_FILE = "BeaverTableView/BeaverTableView-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		83D8C173164498AE00DDEC9F /* Build configuration list for PBXProject "BeaverTableView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83D8C19B164498AF00DDEC9F /* Debug */,
+				83D8C19C164498AF00DDEC9F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		83D8C19D164498AF00DDEC9F /* Build configuration list for PBXNativeTarget "BeaverTableView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83D8C19E164498AF00DDEC9F /* Debug */,
+				83D8C19F164498AF00DDEC9F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 83D8C170164498AE00DDEC9F /* Project object */;
+}
