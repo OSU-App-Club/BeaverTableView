@@ -16,6 +16,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Odd-od-jgU" customClass="OSUTableView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="rightDetailCell" textLabel="Cxz-6Z-c8R" detailTextLabel="Q8e-Pg-RN9" style="IBUITableViewCellStyleValue1" id="Vwe-v0-9wb">
@@ -43,6 +44,8 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
+                                    <outlet property="dataSource" destination="2" id="eqY-8R-YH6"/>
+                                    <outlet property="delegate" destination="2" id="SEO-jP-prO"/>
                                     <outlet property="osuDataSource" destination="2" id="1i9-ji-mRd"/>
                                     <outlet property="osuDelegate" destination="2" id="zjC-MP-hU6"/>
                                 </connections>
@@ -63,8 +66,8 @@
         <class className="OSUTableView" superclassName="UITableView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/OSUTableView.h"/>
             <relationships>
-                <relationship kind="outlet" name="osuDataSource"/>
-                <relationship kind="outlet" name="osuDelegate"/>
+                <relationship kind="outlet" name="dataSource"/>
+                <relationship kind="outlet" name="delegate"/>
             </relationships>
         </class>
         <class className="ViewController" superclassName="UIViewController">

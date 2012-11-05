@@ -14,28 +14,29 @@
 //Properties that are contained in here can only be used within this file
 @property (nonatomic, strong) NSIndexPath *indexOfAddedCell;
 @property CGFloat addedRowHeight;
+
+//Hold references to delegate/datasource passed to us
+//We will use calls to this delegate/datasource combo rather than the UITableView delegate/dataSource throughout this class
+@property (nonatomic, weak) id <UITableViewDataSource> osuDataSource;
+@property (nonatomic, weak) id <UITableViewDelegate> osuDelegate;
+
 @end
 
 @implementation OSUTableView
 @synthesize osuDataSource = _osuDataSource, osuDelegate = _osuDelegate;
 @synthesize indexOfAddedCell = _indexOfAddedCell, addedRowHeight = _addedRowHeight;
 
-- (id)initWithCoder:(NSCoder *)aDecoder{
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-       
-    }
-    return self;
-}
--(void) setOsuDelegate:(id<OSUTableViewDelegate>)osuDelegate{
+//The following two methods are what get written by @synthesize: We are overwritting the setter method so we can save a copy
+-(void) setDelegate:(id<OSUTableViewDelegate>)delegate{
     //Get all delegate messages
     //We forward ones we don't implement with forwardInvocation
-    _osuDelegate = osuDelegate;
-    self.delegate = self;
+    [super setDelegate:self]; //Set delegate as you would would in UITableView
+    self.osuDelegate = delegate;
 }
--(void) setOsuDataSource:(id<OSUTableViewDataSource>)osuDataSource{
+-(void) setDataSource:(id<OSUTableViewDataSource>)dataSource{
     //We connect these up directly because we don't need to intercept any datasource calls
-    self.dataSource = osuDataSource;
+    [super setDataSource:dataSource];
+    self.osuDataSource = dataSource; //Might as well store reference to this for use in this class
 }
 #pragma mark - UIScrollViewDelegate
 //This works because uitableview inherits from uiscrollview
@@ -98,6 +99,7 @@
     }
     return self.rowHeight;
 }
+
 #pragma mark - Methods Forwarding
 //These three methods are allow us to be our own delegate without taking away delegate calls for our osuDelegate
 -(BOOL)respondsToSelector:(SEL)aSelector{
@@ -107,6 +109,7 @@
     }
     return [super respondsToSelector:aSelector];
 }
+//This methods gets called any time this object recieves a message it doesn't have a corresponding method for
 - (void)forwardInvocation:(NSInvocation *)anInvocation
 {
     if ([self.osuDelegate respondsToSelector:[anInvocation selector]])

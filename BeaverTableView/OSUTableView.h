@@ -23,9 +23,8 @@
 
 @interface OSUTableView : UITableView <UITableViewDataSource, UITableViewDelegate>
 
-//Create two new delegate/datasource connections to intercept some of those calls
-//Forward the rest to the actual dataSource/Delegate
-@property (nonatomic, weak) IBOutlet id <OSUTableViewDataSource> osuDataSource;
-@property (nonatomic, weak) IBOutlet id <OSUTableViewDelegate> osuDelegate;
+//Override the delegate/datasource of UITableView to use our custom protocols
+@property (nonatomic, weak) IBOutlet id <OSUTableViewDataSource> dataSource;
+@property (nonatomic, weak) IBOutlet id <OSUTableViewDelegate> delegate;
 
 @end
