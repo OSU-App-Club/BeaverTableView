@@ -15,13 +15,12 @@
 -(void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath;
 @end
 
-//This give us the flexibility to add methods to the normal UITableViewDelegate protocol; Thing subclassing for protocols
+//This give us the flexibility to add methods to the normal UITableViewDelegate protocol; Think subclassing for protocols
 @protocol OSUTableViewDelegate <UITableViewDelegate>
-
 
 @end
 
-@interface OSUTableView : UITableView <UITableViewDataSource, UITableViewDelegate>
+@interface OSUTableView : UITableView <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 
 //Override the delegate/datasource of UITableView to use our custom protocols
 @property (nonatomic, weak) IBOutlet id <OSUTableViewDataSource> dataSource;

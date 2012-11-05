@@ -49,18 +49,13 @@
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"rightDetailCell"];
     
     //Modify cell according to our model
-    
-    //Example 1
-    //cell.textLabel.text = [NSString stringWithFormat:@"Section: %i",indexPath.section];
-    //cell.detailTextLabel.text = [NSString stringWithFormat:@"Index: %i",indexPath.row];
-    
-    //Example 2
     cell.textLabel.text = [self.tableInformation objectAtIndex:indexPath.row];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"Index: %i",indexPath.row];
 
     
     return cell;
 }
+
 //We use this method for adding and removing cells from our model based on gestures
 -(void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (editingStyle) {
@@ -80,7 +75,6 @@
     }
     
 }
-
 
 
 
