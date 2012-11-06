@@ -21,7 +21,7 @@
 
 @end
 
-@interface OSUTableView : UITableView <UITableViewDataSource, UITableViewDelegate>
+@interface OSUTableView : UITableView <UITableViewDelegate> //We don't intercept any dataSource calls at this point
 
 //Create two new delegate/datasource connections to intercept some of those calls
 //Forward the rest to the actual dataSource/Delegate
