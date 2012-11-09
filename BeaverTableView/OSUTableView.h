@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum OSUTableViewState {
+    OSUTableViewStateNone = 0,
+    OSUTableViewStateDragging = 1,
+    OSUTableViewStatePinching = 2
+    } OSUTableViewState;
+
+
 //Subclass protocols with methods specfic to this class
 @protocol OSUTableViewDataSource <UITableViewDataSource>
 @required
@@ -25,5 +32,6 @@
 //Override the delegate/datasource of UITableView to use our custom protocols
 @property (nonatomic, weak) IBOutlet id <OSUTableViewDataSource> dataSource;
 @property (nonatomic, weak) IBOutlet id <OSUTableViewDelegate> delegate;
+@property OSUTableViewState state;
 
 @end

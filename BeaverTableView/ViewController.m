@@ -37,6 +37,21 @@
     //Rows get highlighted when selected... deselect after that
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+//This is a delegate method that gets called everytime a cell is redrawn...we can use this to change the background color by index
+
+    //This is an arbritray constant...play with it to your liking
+    //CGFloat hueOffset = 0.12 * indexPath.row / [self tableView:self.tableView numberOfRowsInSection:indexPath.section];
+    
+    
+    //CGFloat hue, saturation, brightness, alpha;
+    //Get properties of our base color (Color at top)
+
+        // We wants the hue value to be between 0 - 1 after appending the offset..we can use % to get remainder
+    
+        //Create new color with this new hue and the same properties as before
+    
+        //Set new background color for cell...content view is the main cell view
+
 #pragma mark - UITableViewDataSource
 -(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
@@ -60,15 +75,10 @@
 -(void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (editingStyle) {
         case UITableViewCellEditingStyleInsert:
-            if ([indexPath isEqual:[NSIndexPath indexPathForRow:0 inSection:0]]) {
-                [self.tableInformation insertObject:[NSString stringWithFormat:@"Object: %d",self.tableInformation.count] atIndex:indexPath.row];
-            }
-            
+                [self.tableInformation insertObject:[NSString stringWithFormat:@"Object: %d",self.tableInformation.count] atIndex:indexPath.row];            
             break;
         case UITableViewCellEditingStyleDelete:
-            if ([indexPath isEqual:[NSIndexPath indexPathForRow:0 inSection:0]]) {
                 [self.tableInformation removeObjectAtIndex:indexPath.row];
-            }
             break;
         default:
             break;
