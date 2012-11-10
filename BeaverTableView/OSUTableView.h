@@ -27,7 +27,7 @@ typedef enum OSUTableViewState {
 
 @end
 
-@interface OSUTableView : UITableView <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
+@interface OSUTableView : UITableView <UITableViewDelegate, UIGestureRecognizerDelegate> //We don't intercept any dataSource calls at this point
 
 //Override the delegate/datasource of UITableView to use our custom protocols
 @property (nonatomic, weak) IBOutlet id <OSUTableViewDataSource> dataSource;
