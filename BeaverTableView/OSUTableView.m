@@ -127,7 +127,7 @@
         self.state = OSUTableViewStateNone;
         return;
     }
-    //Extract touch points from gesture
+    //Extract touch points from gesture relative to self
     CGPoint touch1 = [sender locationOfTouch:0 inView:self];
     CGPoint touch2 = [sender locationOfTouch:1 inView:self];
     //Determine Upper Point
@@ -163,22 +163,28 @@
             // bounds back to the top while we don't have enough cells on the screen
             self.contentInset = UIEdgeInsetsMake(self.frame.size.height, 0, self.frame.size.height, 0);
             
-            //Create new cell with datasource methods 
+            //Start making updates
             [self beginUpdates];
+            //Create new cell in data source
             [self.osuDataSource tableView:self commitEditingStyle:UITableViewCellEditingStyleInsert forRowAtIndexPath:self.indexOfAddedCell];
+            //Insert new cell with animation
             [self insertRowsAtIndexPaths:[NSArray arrayWithObject:self.indexOfAddedCell] withRowAnimation:UITableViewRowAnimationMiddle];
+            //End update...this is when this whole block executes
             [self endUpdates];
             break;
         }
         case UIGestureRecognizerStateChanged:
+            //If self.addedRowHeight - height delta is greater than 1...set height
             if (self.addedRowHeight - heightDelta >= 1 || self.addedRowHeight - heightDelta <= -1) {
+                //MAX of heightdelta and 1
                 self.addedRowHeight = MAX(heightDelta, 1);
+                //Reload data so new height gets added
                 [self reloadData];
             }
             // Scrolls tableview according to the upper touch point to mimic a realistic
             // dragging gesture
-            CGFloat diffOffsetY = self.upperPointOfPinch.y - currentUpperPoint.y;
-            self.contentOffset = CGPointMake(self.contentOffset.x,self.contentOffset.y+diffOffsetY);
+            //CGFloat diffOffsetY = self.upperPointOfPinch.y - currentUpperPoint.y;
+            //self.contentOffset = CGPointMake(self.contentOffset.x,self.contentOffset.y+diffOffsetY);
 
         default:
             break;
@@ -267,8 +273,9 @@
 }
 //Now both paths for init will route through this methods...we will use it to add our custom gestures
 -(void) _customInit{
-    //Add Gesture Recognizers
+    //Add Gesture Recognizers to current view
     UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinch:)];
+    //Set self as delegate to recieve gesture calls
     pinch.delegate = self;
     [self addGestureRecognizer:pinch];
 }
