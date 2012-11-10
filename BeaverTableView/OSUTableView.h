@@ -17,6 +17,7 @@ typedef enum OSUTableViewState {
 
 //Subclass protocols with methods specfic to this class
 @protocol OSUTableViewDataSource <UITableViewDataSource>
+
 @required
 //We need to make this required because we use it to add cells for gestures
 -(void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath;

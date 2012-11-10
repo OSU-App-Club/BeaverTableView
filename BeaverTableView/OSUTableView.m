@@ -11,6 +11,7 @@
 
 //This is a private interface
 @interface OSUTableView()
+
 //Properties that are contained in here can only be used within this file
 @property (nonatomic, strong) NSIndexPath *indexOfAddedCell;
 @property CGFloat addedRowHeight;
@@ -32,17 +33,20 @@
 @synthesize indexOfAddedCell = _indexOfAddedCell, addedRowHeight = _addedRowHeight, upperPointOfPinch = _upperPointOfPinch;
 
 //The following two methods are what get written by @synthesize: We are overwritting the setter method so we can save a copy for internal use
+
 -(void) setDelegate:(id<OSUTableViewDelegate>)delegate{
     //Get all delegate messages
     //We forward ones we don't implement with forwardInvocation
     self.osuDelegate = delegate; //Save a reference for internal use..must set this first because the next line will trigger action
     [super setDelegate:self]; //Set delegate as you would would in UITableView
 }
+
 -(void) setDataSource:(id<OSUTableViewDataSource>)dataSource{
     //We connect these up directly because we don't need to intercept any datasource calls
     self.osuDataSource = dataSource; //Might as well store reference to this too for use in this class
     [super setDataSource:dataSource];
 }
+
 #pragma mark - UIScrollViewDelegate
 //This works because uitableview inherits from uiscrollview
 -(void) scrollViewDidScroll:(UIScrollView *)scrollView{    
@@ -73,6 +77,7 @@
     //Pass method to delegate if necessary
     [self _passSelector:_cmd to:self.osuDelegate];
 }
+
 //This is called when we lift our finger off the tableView
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
     //Add cell if has been fully created
@@ -84,6 +89,7 @@
     //Pass method to delegate if necessary
     [self _passSelector:_cmd to:self.osuDelegate];
 }
+
 #pragma mark - UITableViewDelegate
 -(CGFloat)tableView:(OSUTableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     //We need to use our custom height if this is the cell we are adding
@@ -97,72 +103,116 @@
     else
         return self.rowHeight; //Lastly use our rowHeight property; This is a default in UITableView
 }
+
 //This method disables the use of standard editing because we implement our own editing methods
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
     return UITableViewCellAccessoryNone;
 }
+
 #pragma mark - UIGestureRecognizer Delegate Methods
 //With this method we can stop gestures from functioning when they shouldn't
 
+
 #pragma mark - UIGestureRecognizer Selectors
 //This method will get called very frequently from beginnng..through changes...and after the gesture ends/cancels
+-(void) handlePinch: (UIPinchGestureRecognizer *) pinchGesture{
+    
     //Check if for failing condition(s)
+    if(pinchGesture.state == UIGestureRecognizerStateEnded || pinchGesture.numberOfTouches < 2){
         //Commit/disgard cell if index has been added
-
+        if(self.indexOfAddedCell){
             //Add/Disgard Cell
-
+            [self _commitDisgardCell];
+        }
         //Reset contentInset
-
+        self.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
         //Reset State
-
+        self.state = OSUTableViewStateNone;
+    }
 
     //Extract touch points from gesture relative to self
-
-
+    CGPoint touch1 = [pinchGesture locationOfTouch:0 inView:self];
+    CGPoint touch2 = [pinchGesture locationOfTouch:1 inView:self];
+    
     //Determine Upper Point
+    CGPoint upperPoint = touch1.y < touch2.y ? touch1 : touch2;
+    CGPoint leftMostPoint = touch1.x < touch2.x ? touch1 : touch2;
     
     //Get Y Height
+    CGFloat height = fabsf(touch1.y - touch2.y);
     //Determine change in height since last time
-    //CGFloat heightDelta = height - (height/(sender.scale)); //The change from the inital pinch pinch location; Pinch scale goes from 1 to larger as you pinch open->thus height delta goes from 0 to larger but at a faster rate
+    
+    CGFloat heightDelta = height - (height/(pinchGesture.scale)); //The change from the inital pinch pinch location; Pinch scale goes from 1 to larger as you pinch open->thus height delta goes from 0 to larger but at a faster rate
     
     //Switch on state of gesture recongnizer
-    //Begin
+    switch(pinchGesture.state){
+        //Begin Pinch
+        case UIGestureRecognizerStateBegan:{
+            NSLog(@"Gesture Began");
             //Determine Index Path by making rect with points
-
+            NSArray *indexPaths = [self indexPathsForRowsInRect:CGRectMake(leftMostPoint.x, upperPoint.y, fabsf(touch1.x - touch2.x), fabsf(touch1.y - touch2.y))];
+            
             //Check if an index path exists in that rect
-
+            if(indexPaths.count < 2){
+                return;
+            }
             
             //Set State
+            self.state = OSUTableViewStatePinching;
             
             //Find the correct index between fingers and set to added index
-
-
-            //NSInteger    midIndex = ((float)(firstIndexPath.row + lastIndexPath.row) / 2) + 0.5;
-
+            NSIndexPath *firstIndexPath = [indexPaths objectAtIndex:0];
+            NSIndexPath *lastIndexPath = [indexPaths lastObject];
+            
+            NSInteger    midIndex = ((float)(firstIndexPath.row + lastIndexPath.row) / 2) + 0.5;
+            
+            NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:midIndex inSection:0];
+            
+            self.indexOfAddedCell = newIndexPath;
+            
             //Save Reference to upper point
-                        
+            self.upperPointOfPinch = upperPoint;
+            
             //Add content inset to deal with scrolling issues..try without to show yourself
+            self.contentInset = UIEdgeInsetsMake(self.bounds.size.height, 0, self.bounds.size.height, 0);
             
             //Start making updates
-
+            [self beginUpdates];
+            
             //Create new cell in data source 
-
+            [self.osuDataSource tableView:self commitEditingStyle:UITableViewCellEditingStyleInsert forRowAtIndexPath:self.indexOfAddedCell];
+            
             //Insert new cell with animation
-
+            [self insertRowsAtIndexPaths:[NSArray arrayWithObject:self.indexOfAddedCell] withRowAnimation:UITableViewRowAnimationNone];
+            
             //End update...this is when this whole block executes
+            [self endUpdates];
 
-        //Changed
+            break;
+        }//Pinch Changed
+        case UIGestureRecognizerStateChanged:{
+            NSLog(@"GestureChanged");
             //If self.addedRowHeight - height delta is greater than 1...set height
+            
+            //MAX of heightdelta and 1
+            self.addedRowHeight = MAX(1, heightDelta);
+            
+            //Reload data so new height gets added
+            [self reloadData];
+            
+            // Scrolls tableview according to the upper touch point to mimic a realistic dragging gesture
+            CGFloat diffOffsetY = self.upperPointOfPinch.y - upperPoint.y;
+            self.contentOffset = CGPointMake(self.contentOffset.x,self.contentOffset.y+diffOffsetY);
 
-                //MAX of heightdelta and 1
-
-                //Reload data so new height gets added
-
-            // Scrolls tableview according to the upper touch point to mimic a realistic
-            // dragging gesture
-            //CGFloat diffOffsetY = self.upperPointOfPinch.y - currentUpperPoint.y;
-            //self.contentOffset = CGPointMake(self.contentOffset.x,self.contentOffset.y+diffOffsetY);
-
+            break;
+        }
+        case UIGestureRecognizerStateEnded:
+            NSLog(@"Gesture Ended");
+            break;
+    }
+            
+}
+    
 #pragma mark - Utility
 -(void) _commitDisgardCell{
     if ([self cellForRowAtIndexPath:self.indexOfAddedCell].bounds.size.height >= self.rowHeight) {
@@ -201,6 +251,7 @@
         return [self.osuDelegate respondsToSelector:aSelector];
     }
 }
+
 //This methods gets called any time this object recieves a message it doesn't have a corresponding method for
 - (void)forwardInvocation:(NSInvocation *)anInvocation
 {
@@ -227,6 +278,7 @@
         #pragma clang diagnostic pop 
     }
 }
+
 #pragma mark - Initilize Methods
 //This is the init method that Interface Builder uses
 -(id) initWithCoder:(NSCoder *)aDecoder{
@@ -236,6 +288,7 @@
     }
     return self;
 }
+
 //This is the programatic init method
 -(id) initWithFrame:(CGRect)frame style:(UITableViewStyle)style{
     self = [super initWithFrame:frame style:style]; //Use UITableView Init methods
@@ -244,12 +297,16 @@
     }
     return self;
 }
+
 //Now both paths for init will route through this methods...we will use it to add our custom gestures
 -(void) _customInit{
     //Add Gesture Recognizers to current view
     UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinch:)];
+    
     //Set self as delegate to recieve gesture calls
     pinch.delegate = self;
+    
     [self addGestureRecognizer:pinch];
 }
+
 @end
