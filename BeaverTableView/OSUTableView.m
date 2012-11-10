@@ -14,7 +14,7 @@
 //Properties that are contained in here can only be used within this file
 @property (nonatomic, strong) NSIndexPath *indexOfAddedCell;
 @property CGFloat addedRowHeight;
-@property CGPoint upperPointOfPinch;
+@property CGPoint upperPointOfPinch; //This is used to store pinch from previous call of pinch handler
 
 //Hold private references to delegate/datasource passed to us
 //We will use calls to this osuDelegate/osuDataSource combo rather than the UITableView delegate/dataSource throughout this class
@@ -103,93 +103,66 @@
 }
 #pragma mark - UIGestureRecognizer Delegate Methods
 //With this method we can stop gestures from functioning when they shouldn't
--(BOOL) gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
-    //We can filter gestureRecognizer for any type of gesture we have by its class
-    if ([gestureRecognizer isKindOfClass:[UIPinchGestureRecognizer class]]) {
-        NSLog(@"Pinching");
-    }
-    return YES;
-}
 
 #pragma mark - UIGestureRecognizer Selectors
 //This method will get called very frequently from beginnng..through changes...and after the gesture ends/cancels
--(void) handlePinch:(UIPinchGestureRecognizer*)sender{
-    //Check if for failing condition
-    if (sender.state == UIGestureRecognizerStateEnded || sender.state == UIGestureRecognizerStateCancelled || sender.numberOfTouches < 2) {
+    //Check if for failing condition(s)
         //Commit/disgard cell if index has been added
-        if (self.indexOfAddedCell) {
+
             //Add/Disgard Cell
-            [self _commitDisgardCell];
-        }
+
         //Reset contentInset
-        self.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+
         //Reset State
-        self.state = OSUTableViewStateNone;
-        return;
-    }
+
+
     //Extract touch points from gesture relative to self
-    CGPoint touch1 = [sender locationOfTouch:0 inView:self];
-    CGPoint touch2 = [sender locationOfTouch:1 inView:self];
+
+
     //Determine Upper Point
-    CGPoint currentUpperPoint = touch1.y < touch2.y ? touch1 : touch2;
     
     //Get Y Height
-    CGFloat height = fabsf(touch2.y - touch1.y);
     //Determine change in height since last time
-    CGFloat heightDelta = height - (height/(sender.scale)); //The change from the inital pinch pinch location; Pinch scale goes from 1 to larger as you pinch open->thus height delta goes from 0 to larger but at a faster rate
+    //CGFloat heightDelta = height - (height/(sender.scale)); //The change from the inital pinch pinch location; Pinch scale goes from 1 to larger as you pinch open->thus height delta goes from 0 to larger but at a faster rate
     
     //Switch on state of gesture recongnizer
-    switch (sender.state) {
-        case UIGestureRecognizerStateBegan:
-        {
+    //Begin
             //Determine Index Path by making rect with points
-            NSArray *indexPaths = [self indexPathsForRowsInRect:CGRectMake(touch1.x, touch1.y,self.bounds.size.width,fabsf(touch2.y - touch1.y))];
-            if (indexPaths.count < 1)
-                return; //Not pinching on valid cell
+
+            //Check if an index path exists in that rect
+
             
             //Set State
-            self.state = OSUTableViewStatePinching;
             
             //Find the correct index between fingers and set to added index
-            NSIndexPath *firstIndexPath = [indexPaths objectAtIndex:0];
-            NSIndexPath *lastIndexPath  = [indexPaths lastObject];
-            NSInteger    midIndex = ((float)(firstIndexPath.row + lastIndexPath.row) / 2) + 0.5;
-            self.indexOfAddedCell = [NSIndexPath indexPathForRow:midIndex inSection:firstIndexPath.section];
+
+
+            //NSInteger    midIndex = ((float)(firstIndexPath.row + lastIndexPath.row) / 2) + 0.5;
 
             //Save Reference to upper point
-            self.upperPointOfPinch = currentUpperPoint;
                         
-            // Creating contentInset to fulfill the whole screen, so our tableview won't occasionaly
-            // bounds back to the top while we don't have enough cells on the screen
-            self.contentInset = UIEdgeInsetsMake(self.frame.size.height, 0, self.frame.size.height, 0);
+            //Add content inset to deal with scrolling issues..try without to show yourself
             
             //Start making updates
-            [self beginUpdates];
-            //Create new cell in data source
-            [self.osuDataSource tableView:self commitEditingStyle:UITableViewCellEditingStyleInsert forRowAtIndexPath:self.indexOfAddedCell];
+
+            //Create new cell in data source 
+
             //Insert new cell with animation
-            [self insertRowsAtIndexPaths:[NSArray arrayWithObject:self.indexOfAddedCell] withRowAnimation:UITableViewRowAnimationMiddle];
+
             //End update...this is when this whole block executes
-            [self endUpdates];
-            break;
-        }
-        case UIGestureRecognizerStateChanged:
+
+        //Changed
             //If self.addedRowHeight - height delta is greater than 1...set height
-            if (self.addedRowHeight - heightDelta >= 1 || self.addedRowHeight - heightDelta <= -1) {
+
                 //MAX of heightdelta and 1
-                self.addedRowHeight = MAX(heightDelta, 1);
+
                 //Reload data so new height gets added
-                [self reloadData];
-            }
+
             // Scrolls tableview according to the upper touch point to mimic a realistic
             // dragging gesture
             //CGFloat diffOffsetY = self.upperPointOfPinch.y - currentUpperPoint.y;
             //self.contentOffset = CGPointMake(self.contentOffset.x,self.contentOffset.y+diffOffsetY);
 
-        default:
-            break;
-    }
-}
 #pragma mark - Utility
 -(void) _commitDisgardCell{
     if ([self cellForRowAtIndexPath:self.indexOfAddedCell].bounds.size.height >= self.rowHeight) {
